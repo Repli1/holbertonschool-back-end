@@ -4,7 +4,10 @@ import requests
 import json
 import sys
 
-def to_do(emp_id=int(sys.argv[1])):
+def to_do(emp_id=0):
+    if len(sys.argv) == 1:
+        return
+    emp_id=int(sys.argv[1])
     users = requests.get('https://jsonplaceholder.typicode.com/users')
     todos = requests.get('https://jsonplaceholder.typicode.com/todos')
     users_list = json.loads(users.text)
@@ -26,7 +29,7 @@ def to_do(emp_id=int(sys.argv[1])):
             str2 = f"tasks({completed_tasks}/{total_tasks})"
             print(str1 + str2)
             for element in comp_list:
-                print('  ' + element)
+                print('\t ' + element)
             break
 
 if __name__ == "__main__":
