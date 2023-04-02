@@ -47,7 +47,7 @@ def to_do(emp_id=0):
         task_dict["task"] = task['title']
         task_dict["completed"] = task['completed']
         task_dict["username"] = username
-        json_list.append(task_dict)
+        json_list.append(task_dict.copy())
     json_dict = {str(emp_id) : json_list}
     jsonfile = str(emp_id) + ".json"
     with open(jsonfile, 'w') as f2:
