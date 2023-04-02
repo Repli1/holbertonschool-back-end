@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" for a given employee ID, returns information about their TODO list """
+""" For a given employee ID, returns information about their TODO list """
 import requests
 import json
 import sys
@@ -28,4 +28,6 @@ def to_do(emp_id=int(sys.argv[1])):
             for element in comp_list:
                 print('  ' + element)
             break
-to_do()
+
+if __name__ == "__main__":
+    to_do()
