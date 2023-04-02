@@ -26,7 +26,7 @@ def to_do(emp_id=0):
                         completed_tasks += 1
                     total_tasks += 1
                     username = user['name']
-            str1 = "Employee " + str(username) + "is done with "
+            str1 = "Employee " + str(username) + " is done with "
             s = "tasks(" + str(completed_tasks) + "/" + str(total_tasks) + "):"
             print(str1 + s)
             for element in comp_list:
