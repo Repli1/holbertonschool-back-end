@@ -1,13 +1,14 @@
 #!/usr/bin/python3
 """ For a given employee ID, returns information about their TODO list """
-import requests
 import json
+import requests
 import sys
+
 
 def to_do(emp_id=0):
     if len(sys.argv) == 1:
         return
-    emp_id=int(sys.argv[1])
+    emp_id = int(sys.argv[1])
     users = requests.get('https://jsonplaceholder.typicode.com/users')
     todos = requests.get('https://jsonplaceholder.typicode.com/todos')
     users_list = json.loads(users.text)
@@ -20,14 +21,14 @@ def to_do(emp_id=0):
             comp_list = []
             for task in todos_list:
                 if task['userId'] == user['id']:
-                    if task['completed'] == True:
+                    if task['completed'] is True:
                         comp_list.append(task['title'])
                         completed_tasks += 1
                     total_tasks += 1
                     username = user['name']
-            str1 = f"Employee {username} is done with "
-            str2 = f"tasks({completed_tasks}/{total_tasks})"
-            print(str1 + str2)
+            str1 = "Employee " + str(username) + "is done with "
+            st = "tasks(" + str(completed_tasks) + "/" + str(total_tasks) + ")"
+            print(str1 + st)
             for element in comp_list:
                 print('\t ' + element)
             break
