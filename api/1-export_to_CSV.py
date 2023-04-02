@@ -14,6 +14,7 @@ def to_do(emp_id=0):
     todos = requests.get('https://jsonplaceholder.typicode.com/todos')
     users_list = json.loads(users.text)
     todos_list = json.loads(todos.text)
+    user_tasks = []
     for user in users_list:
         if user['id'] == emp_id:
             completed_tasks = 0
@@ -22,6 +23,7 @@ def to_do(emp_id=0):
             comp_list = []
             for task in todos_list:
                 if task['userId'] == user['id']:
+                    user_tasks.append(task)
                     if task['completed'] is True:
                         comp_list.append(task['title'])
                         completed_tasks += 1
@@ -37,7 +39,7 @@ def to_do(emp_id=0):
     csvfile = str(emp_id) + ".csv"
     with open(csvfile, 'w') as f:
         wr = csv.writer(f, quoting=csv.QUOTE_ALL)
-        for task in todos_list:
+        for task in user_tasks:
             wr.writerow([emp_id, username, task['completed'], task['title']])
 
 if __name__ == "__main__":
