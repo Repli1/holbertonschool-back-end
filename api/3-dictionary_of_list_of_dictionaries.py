@@ -8,8 +8,9 @@ import sys
 
 def to_do(emp_id=0):
     if len(sys.argv) == 1:
-        return
-    emp_id = int(sys.argv[1])
+        pass
+    else:
+        emp_id = int(sys.argv[1])
     users = requests.get('https://jsonplaceholder.typicode.com/users')
     todos = requests.get('https://jsonplaceholder.typicode.com/todos')
     users_list = json.loads(users.text)
@@ -52,7 +53,6 @@ def to_do(emp_id=0):
     jsonfile = str(emp_id) + ".json"
     with open(jsonfile, 'w') as f2:
         wr2 = json.dump(json_dict, f2)
-    
     json_list2 = []
     task_dict2 = {}
     user_dict = {}
